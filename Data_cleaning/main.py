@@ -1,6 +1,8 @@
 # main.py
 
+import sys
 import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from Data_collection.fetch_raw_data import fetch_and_save_raw_data 
 from Data_cleaning.clean_data import clean_raw_data 
 
