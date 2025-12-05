@@ -27,4 +27,4 @@ The following variables were derived or processed from the cleaned data:
 #### 4. Data Limitations and Extensions
 
 * **Data Limitations:** The `owners_proxy` variable is based on ranges reported by SteamSpy and is an estimate, not a direct sales figure. Furthermore, the dataset represents a single snapshot in time, missing insights into sales over time or seasonal trends.
-* **Extensions:** Future work could involve collecting additional data, such as detailed user tags, full-text review content (for sentiment analysis), or using an updated collection schedule to enable time-series analysis of price changes and review decay.
+* **Extensions:** Future work could involve collecting additional data, such as detailed user tags, full-text review content , or using an updated collection schedule to enable time-series analysis of price changes and review decay.
