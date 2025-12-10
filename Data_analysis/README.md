@@ -46,6 +46,8 @@ The condition number is large, 1.16e+05. This might indicate that there arestron
 
 ## IV. Results of the Improved Regression Model
 
+After making adjustment to our model:
+
 The following table presents the core results from the optimized model (using HC3 robust standard errors):
 
 | Variable | Coefficient | P Value | Confidence Interval Lower | Confidence Interval Upper |
