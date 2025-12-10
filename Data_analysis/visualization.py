@@ -18,7 +18,7 @@ def get_db_conn():
     password = os.getenv("PGPASSWORD", "")
 
     if not user:
-        raise RuntimeError("PGUSER environment variable not set. Please check your .env file.")
+        raise RuntimeError("connection error")
 
     conn = psycopg2.connect(
         host=host, port=port, dbname=dbname, user=user, password=password
@@ -86,34 +86,50 @@ def analyze_data():
     print(model.summary())
 
 
-    # Visualization(Figures)
+    # Price&review
     plt.figure(figsize=(8, 6))
-    sns.scatterplot(x=df[X_VARS_CONT[0]], y=Y, color='blue', alpha=0.6)
+    sns.scatterplot(x=df[X_VARS_CONT[0]], y=Y, color='darkblue', alpha=0.6)
     plt.title('Price vs. Review Ratio')
     plt.xlabel(X_VARS_CONT[0])
     plt.ylabel(Y_VAR)
     plt.grid(True, linestyle=':', alpha=0.6)
-    plt.savefig(os.path.join(figures_dir, 'price_review_scatter.png'))
+    plt.savefig(os.path.join(figures_dir, 'plot_price_optimized.png'), dpi=300)
     plt.close()
     print("Scatter plot saved")
 
+    # Residuals
     plt.figure(figsize=(8, 6))
     sns.residplot(x=model.fittedvalues, y=model.resid, lowess=True, line_kws={'color': 'red'})
     plt.title('Residuals vs. Fitted Values')
     plt.xlabel('Fitted Values')
     plt.ylabel('Residuals')
     plt.grid(True, linestyle=':', alpha=0.6)
-    plt.savefig(os.path.join(figures_dir, 'residuals_fitted_plot.png'), dpi=300)
+    plt.savefig(os.path.join(figures_dir, 'plot_residuals_optimized.png'), dpi=300)
     plt.close()
     print("Residuals plot saved")
 
+    # Genre  Bar Chart
+    ALL_GENRE_COLS_IN_MODEL = [col for col in model.params.index if col.startswith('g_')]
+
+    genre_coeffs = model.params[ALL_GENRE_COLS_IN_MODEL]
+    genre_conf_int = model.conf_int().loc[ALL_GENRE_COLS_IN_MODEL]
+    
+    errors = np.abs(genre_conf_int.T.values - genre_coeffs.values)
+
+    plt.figure(figsize=(12, 7))
+
+    labels = [col.replace('g_', '') for col in genre_coeffs.index]
+    plt.bar(labels, genre_coeffs.values, yerr=errors, capsize=5, color='skyblue')
+
+    plt.axhline(0, color='grey', linewidth=0.8)
+
     plt.title('Impact of Game Genres on Review Ratio')
     plt.xlabel('Genre')
-    plt.ylabel('Coefficient of dummy')
+    plt.ylabel('Coefficient (Change in Review Ratio)')
     plt.xticks(rotation=45, ha='right')
     plt.grid(axis='y', linestyle=':', alpha=0.7)
     plt.tight_layout()
-    plt.savefig(os.path.join(figures_dir, 'genre_impact.png'), dpi=300)
+    plt.savefig(os.path.join(figures_dir, 'plot_genre_impact.png'), dpi=300)
     plt.close()
     print("Bar chart saved")
 

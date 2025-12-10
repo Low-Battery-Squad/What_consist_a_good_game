@@ -1,0 +1,42 @@
+[33me258756[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Analysis
+[33m2d34f15[m Delete Data_analysis/analysis.py
+[33m88eeaeb[m Delete Data_analysis/regression_coefs.csv
+[33m3f9a588[m Start over again
+[33me0721e8[m Merge branch 'main' of https://github.com/Low-Battery-Squad/What_consist_a_good_game
+[33mec1bb86[m Start over again
+[33m26c5742[m Delete Data_analysis/.gitkeep
+[33mdfd9ad6[m Rename analysis.py to Data_analysis/analysis.py
+[33meaa9a7f[m Rename Data_analysis/analysis.py to analysis.py
+[33m90283b3[m Add regression outputs
+[33mae5e5c9[m Regression analysis script
+[33m14f6def[m Add matplotlib to requirements
+[33m07ffadf[m Add statsmodels to requirements
+[33md18277f[m Create my work folder
+[33m285e944[m Remove incorrect folder
+[33md4ae6b3[m Create .gitkeep
+[33m5730b36[m Update README.md
+[33mb1be050[m Create README.md
+[33m38d7bcd[m Merge pull request #5 from sszzss1162/main
+[33md5c4494[m data load
+[33mcd41350[m Update README.md
+[33m1901994[m Merge pull request #4 from Low-Battery-Squad/datacleaning2
+[33ma7f9844[m[33m ([m[1;31morigin/datacleaning2[m[33m)[m data cleaning adjustment
+[33m90a13c9[m data fetching ver1
+[33m3579199[m Merge pull request #3 from Low-Battery-Squad/data
+[33m79f5424[m[33m ([m[1;31morigin/data[m[33m)[m data fetching ver1
+[33mec5d104[m Merge pull request #2 from Low-Battery-Squad/feature/data-cleaning-member2
+[33m222ec99[m fix: Add check for empty DataFrame in clean_data.py to prevent KeyError
+[33m773af10[m Update requirements.txt
+[33m778a84c[m Merge pull request #1 from Low-Battery-Squad/feature/data-cleaning-member2
+[33m33d0098[m Merge branch 'feature/data-cleaning-member2' of github.com:Low-Battery-Squad/What_consist_a_good_game into feature/data-cleaning-member2
+[33m4ce7426[m Merge remote changes into feature/data-cleaning-member2
+[33m3f61281[m fix: Resolve TypeError by making snapshot_dt tz-naive for date comparison
+[33m54538a4[m fix: Ensure Rawdata directory exists before data fetching
+[33m7a26791[m fix: Resolve ModuleNotFoundError by dynamically adding root directory to sys.path
+[33mf35d9db[m Update README.md
+[33m1694306[m docs: Add detailed report for Data Cleaning and Feature Engineering
+[33m149783b[m chore: Add pandas to requirements.txt for data cleaning module
+[33me0879a5[m feat: Final update to main.py orchestrator using Data_cleaning module
+[33ma6c74f6[m feat: Implement data cleaning and feature engineering script (Member 2)
+[33m61dd5ac[m data fetching ver1
+[33mbf39c7c[m[33m ([m[1;31morigin/data_fetching[m[33m)[m data fetching ver1
