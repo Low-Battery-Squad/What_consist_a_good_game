@@ -1,1 +1,35 @@
+## 🔬 Data Analysis and Visualization 
 
+This section focuses on developing a robust Ordinary Least Squares (OLS) regression model to quantify the impact of key Steam game characteristics on the **Review Ratio** (positive reviews / total reviews), complemented by detailed diagnostic and results visualizations.
+
+### Core Features and Technical Implementation
+
+| Area | Description | Technical Details |
+| :--- | :--- | :--- |
+| **Data Preparation** | **Cleaning and Transformation** of raw database data, specifically handling complex JSONB genre lists for dummy variables. | Python `json` & `Pandas` (data flattening and dummy creation). |
+| **Statistical Modeling**| Establishing the OLS model to assess the combined influence of price, review count, release time, and genre. | `statsmodels` (utilizing **HC3 heteroscedasticity-robust standard errors**). |
+| **Model Optimization** | Addressing **multicollinearity** by identifying and dropping unstable genre variables (e.g., `g_Nudity`, `g_Sports`) to ensure coefficient reliability. | Feature engineering based on statistical diagnostics. |
+| **Visualization** | Generating three key plots for model diagnosis and result presentation. | `Matplotlib` & `Seaborn` (using **`dpi=300`** for high-resolution output). |
+
+### 📈 Key Analytical Insights 
+
+| Variable | Direction of Impact | Business Implication |
+| :--- | :--- | :--- |
+| `total_reviews` | **Significantly Positive** | The 'Halo Effect': Higher volume of reviews strongly correlates with a higher positive review ratio. |
+| `days_since_release`| **Significantly Positive** | The 'Time Test': Older games that remain popular tend to have better long-term review ratios due to maintenance or market culling. |
+| **`g_Racing`** | **Significantly Positive** | Relative to the Action baseline, Racing games demonstrate a statistically higher level of user satisfaction. |
+
+### 🖼️ Generated Visualizations
+
+All generated plots are stored in the `figures/` directory for model validation and result communication:
+
+1.  **`plot_price_optimized.png`**: Scatter plot showing the relationship between Price and Review Ratio.
+2.  **`plot_residuals_optimized.png`**: Residuals vs. Fitted Values plot for model diagnostic checks.
+3.  **`plot_genre_impact.png`**: Bar chart of Genre Coefficients (vs. Action baseline), illustrating each genre's marginal effect on the Review Ratio.
+
+### 🛠️ Technical Challenges Addressed
+
+A critical part of this work involved overcoming practical hurdles:
+
+* **File I/O Errors:** Resolving persistent `FileNotFoundError` issues in the Linux/WSL environment caused by attempting to save plots into non-existent subdirectories (e.g., `figures/price/`).
+* **Git Workflow:** Ensuring a clean and accurate record of changes, including complex synchronization of code modifications, file deletions, and new plot generations across local and remote repositories.
