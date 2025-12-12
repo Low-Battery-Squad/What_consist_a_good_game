@@ -144,12 +144,15 @@ TODO (C):
 - Provide 1–2 example SQL queries that illustrate how the table can be used
   (e.g. average review_ratio by genre, top free games, etc.).
 
-### 4.4 Module D – Regression, Visualization & README (Member D)
+### 4.4 Module D – Regression, Visualization (Zhifang Luo)
 
-TODO (D):
-- Describe the main regression(s) implemented (specification, weights, robust SE).  
-- Explain which figures are created and what each figure shows.  
-- Point to the locations of results files (text/table) and images.
+The analysis centers on an Ordinary Least Squares (OLS) Regression Model specified to quantify the impact of price, total reviews, release age, and genre on the Review Ratio. The model was fitted using statsmodels and critically employed HC3 Robust Standard Errors (by setting cov_type='HC3') to correct for observed heteroscedasticity in the error terms, ensuring the reliability of hypothesis tests (P-values and confidence intervals). 
+
+After we trying to adjust the hypothetical OLS model, we've found that there is **severe multicollinearity**. To address it (indicated by a large Condition Number), we optimized the model by removing specific high-collinearity genres `(g_Nudity, g_Sports)` and establishing the most frequent genre `(g_Action)` as the reference category. All final model results, including the coefficient table and comprehensive fit statistics, are output directly to the console via the print(model.summary()) command.
+
+In addition to the text output, the analysis module generates three figures, all saved within the `Data_analysis/figures/ directory`. These artifacts provide visual documentation of the process and results: the Price vs. Review Ratio Scatter Plot (plot_price_optimized.png) shows the raw relationship between variables; the Residuals vs. Fitted Values Plot (plot_residuals_optimized.png) serves as a diagnostic tool for checking model assumptions; and the Genre Impact Bar Chart (plot_genre_impact.png) visually presents the calculated marginal effects (coefficients) and their 95% confidence intervals for all included genre categories.
+
+See the README located in `Data_analysis` for more information.
 
 ---
 
