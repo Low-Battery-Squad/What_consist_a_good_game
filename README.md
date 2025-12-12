@@ -164,11 +164,43 @@ This module is responsible for **talking to the APIs and producing the raw datas
 
 ### 4.2 Module B – Data Cleaning & Feature Engineering (Member B)
 
-TODO (B):
-- Describe major cleaning rules (drop conditions, handling missing values).  
-- Explain how `review_ratio`, `days_since_release`, `owners_proxy` variants,
-  and `main_genre` / dummies are constructed.  
-- Summarize the final `games_clean.csv` schema.
+#### 1. Major Cleaning Rules (Drop Conditions)
+
+The following conditions were applied to the raw dataset to ensure high data quality:
+
+* **Handling Missing Values (Drop Conditions):** Records were dropped if they were missing values for any of the critical features necessary for analysis: `release_date`, `total_reviews`, `owners_proxy`, or `original_price_cents` (Completeness Check).
+* **Minimum Review Threshold:** Games with fewer than 50 total reviews were excluded to ensure that the calculated player satisfaction metric (`review_ratio`) was based on a statistically stable sample size.
+* **Type Filtering:** The initial collection process was designed to only retrieve records classified as "game," ensuring other content types like software or DLC were automatically excluded.
+
+#### 2. Feature Construction Explanation
+
+The following core variables were constructed or processed from the cleaned raw data:
+
+* **`review_ratio`**: This variable, measuring player satisfaction, is constructed as the quotient of positive reviews divided by total reviews: `positive_reviews / total_reviews`.
+* **`days_since_release`**: This metric, measuring market age, is calculated as the difference in days between the timestamp of the data snapshot (`snapshot_dt`) and the game's release date (`release_dt`).
+* **`owners_proxy` Variants**:
+    * The `owners_proxy` field itself is used as a direct estimate, representing the midpoint of the estimated sales range provided by the API.
+    * Price fields were standardized by converting cents to US Dollars: `original_price_cents / 100` resulting in `original_price_usd`.
+* **`main_genre` / Dummies**:
+    * **`main_genre`**: This variable is constructed by taking the **first element** from the API's `genres` list to represent the game's primary category. If the list is empty, the genre is set to 'Unknown'.
+    * **Dummies**: The binary feature `is_free` is constructed by casting the original boolean value to an integer (0 or 1), indicating a free-to-play title.
+
+#### 3. Final `games_clean.csv` Schema Summary
+
+The resulting `games_clean.csv` file contains the most relevant retained original columns and all constructed features, resulting in the following 11-column schema:
+
+| Variable Name | Source/Construction | Purpose/Meaning |
+| :--- | :--- | :--- |
+| **`app_id`**, **`name`** | Original API | Unique ID and Title. |
+| **`total_reviews`** | Original API | Total number of reviews. |
+| **`owners_proxy`** | Original API (SteamSpy) | Sales estimate proxy. |
+| **`release_date`** | Original API | Game's original release date. |
+| **`review_ratio`** | Engineered | Standardized measure of player satisfaction. |
+| **`days_since_release`** | Engineered | Measures the market age/maturity of the game. |
+| **`original_price_usd`**| Engineered | Price converted to US Dollars. |
+| **`current_price_usd`**| Engineered | Current price converted to US Dollars. |
+| **`is_free`** | Engineered | Binary indicator of a free-to-play title. |
+| **`main_genre`** | Engineered | The game's primary category. |
 
 ### 4.3 Module C – Database & SQL (Member C)
 
