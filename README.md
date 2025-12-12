@@ -162,7 +162,7 @@ This module is responsible for **talking to the APIs and producing the raw datas
        total_reviews, positive_reviews, owners_proxy, snapshot_time),
      - plus the raw API responses for reproducibility.
 
-### 4.2 Module B – Data Cleaning & Feature Engineering (Member B)
+### 4.2 Module B – Data Cleaning & Feature Engineering (Jiajie Wang)
 
 #### 1. Major Cleaning Rules (Drop Conditions)
 
