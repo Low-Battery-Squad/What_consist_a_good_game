@@ -2,7 +2,7 @@
 **Group Members:** Linyao(Bob) Ni, Zhifang Luo, Zongshuai Shen, Jiajie Wang   
   
 This repo implements a full data pipeline to study how different game features
-(on Steam) are associated with **user review ratios** (positive_reviews / total_reviews).
+(on Steam) are associated with its popularity among the players, coded by **user review ratios** (positive_reviews / total_reviews).
 
 ## 1. Project Overview & Motivation
 
@@ -25,13 +25,11 @@ This repo implements a full data pipeline to study how different game features
   Used to obtain a large pool of `(appid, name)` for candidate games.
 
 - **Steam Storefront – appdetails & appreviews**  
-  Official metadata (release date, price, genres, is_free) and
-  aggregated review counts (`total_reviews`, `total_positive`).
+  Official metadata (release date, price, genres, is_free) and aggregated review counts (`total_reviews`, `total_positive`).
 
 - **SteamSpy – appdetails**  
   Third-party owners range, e.g. `"200,000 .. 500,000"`,
-  from which we compute a midpoint **`owners_proxy`** as a **popularity tier**
-  rather than an exact sales number.
+  from which we compute a midpoint **`owners_proxy`** as a **popularity tier** rather than an exact sales number.
 
 ### 2.2 Unit of Observation & Key Variables
 
@@ -123,10 +121,39 @@ Example configs:
 
 ### 4.1 Module A – Data Collection (Member A)
 
-TODO (A):
-- Explain how APIs are called, sampling logic, and any filtering rules.  
-- Document important design choices (e.g. popularity ranking, retry logic).  
-- Describe the structure of `games_filtered.json`.
+This module is responsible for **talking to the APIs and producing the raw dataset**  
+`Data_collection/Rawdata/games_filtered.json`.
+
+1. **User-configurable sampling**
+
+   - When you run `python main.py` in the project root, the script asks for a config tuple  
+     `(target_n, min_year, price_flag, sample_mode_flag, genre_string, max_candidates)`.
+   - This one line lets the user decide:
+     - how many games to collect (`target_n`),
+     - from which release year onward (`min_year`),
+     - free / paid / all (`price_flag`),
+     - random sample vs. “top” popular games (`sample_mode_flag`),
+     - whether to restrict to a certain genre (`genre_string`).
+
+2. **API calls and filtering logic**
+
+   - We first get a large pool of app IDs from the official **Steam Web API**.
+   - For each candidate game, we call:
+     - Steam Storefront `appdetails` (metadata, price, genres, is_free),
+     - Steam `appreviews` (total and positive reviews),
+     - SteamSpy `appdetails` (owners range, turned into a coarse `owners_proxy`).
+   - Non-games, games outside the year / genre / free-paid filters, and apps with missing
+     key fields are skipped.
+
+3. **Output**
+
+   - After applying all filters and sampling rules, we keep the desired set of games
+     (random or “top” by popularity).
+   - The module saves a list of JSON objects to  
+     `Data_collection/Rawdata/games_filtered.json`, which contains:
+     - cleaned fields (app_id, name, release_date, prices, is_free, genres,
+       total_reviews, positive_reviews, owners_proxy, snapshot_time),
+     - plus the raw API responses for reproducibility.
 
 ### 4.2 Module B – Data Cleaning & Feature Engineering (Member B)
 
