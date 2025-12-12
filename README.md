@@ -184,12 +184,19 @@ Baseline model:
 
 ### 5.3 Figures & Interpretation
 
-TODO:
-- Briefly describe major figures (with filenames), e.g.:
-  - Scatter: review_ratio vs price, with fitted line.  
-  - Coefficient plot for main regression.  
-  - True vs fitted review_ratio plot.  
-- Include 1–2 sentences on how to interpret each figure.
+All figures are saved in the `Data_analysis/figures/` directory.
+
+**plot_price_optimized.png (Scatter Plot)**: 
+<img width="2000" height="1500" alt="image" src="https://github.com/user-attachments/assets/6273ef10-a6f2-4d8e-9e64-86d55ac0fad7" />
+This plot displays the raw distribution of price and review ratio, visually confirming the weak linear correlation between them.
+
+**plot_residuals_optimized.png (Residuals vs. Fitted Plot)**:
+<img width="2000" height="1500" alt="image" src="https://github.com/user-attachments/assets/d9206908-76bc-468d-b016-c0ac58b8e201" />
+We can learn that the model's error terms are randomly distributed, which is necessary to confirm the validity of the OLS assumptions.
+
+**plot_genre_impact.png (Coefficient Plot)**:
+<img width="2400" height="1200" alt="image" src="https://github.com/user-attachments/assets/9c68b46c-d2e0-47d1-affa-9caec1133051" />
+The bar chart visually represents the estimated marginal impact (coefficients) of each genre relative to the base category, including error bars to show their statistical significance.
 
 ---
 
