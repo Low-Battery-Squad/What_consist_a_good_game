@@ -171,19 +171,16 @@ Baseline model:
         + Σ_k γ_k * genre_{ik}
         + ε_i
 
-TODO:
-- Specify any transformations (logs), weighting (e.g. by total_reviews),
-  and whether robust standard errors are used.
+**Model Details:**
+* **Weighting:** Ordinary Least Squares (OLS) was used; no Weighted Least Squares (WLS) was applied.
+* **Robust Standard Errors (Robust SE):** The model was fitted using **HC3 Robust Standard Errors** (Heteroscedasticity Consistent 3) to correct for the presence of heteroscedasticity in the data.
 
 ### 5.2 Key Quantitative Results
 
-TODO:
-- Summarize 3–5 main findings in plain English, for example:
-  - Sign and magnitude of the price coefficient.
-  - How owners_proxy relates to review_ratio.  
-  - Effect of is_free after controlling for other variables.  
-  - Notable genre effects.  
-- Include R² / adjusted R² / sample size and where to find the full regression table.
+1.  **Popularity Halo Effect:** **`total_reviews`** is the strongest positive predictor ($\beta_2 = 1.677e^{-7}$, $p=0.001$). This indicates that a higher volume of reviews strongly correlates with a higher positive review ratio, suggesting a significant "popularity halo effect."
+2.  **Price Insignificance:** The coefficient for **`current_price`** ($0.0002$) is **not statistically significant** ($p=0.828$). Price itself has no discernible impact on the proportion of positive reviews.
+3.  **Longevity Effect:** **`days_since_release`** shows a statistically significant positive effect ($\beta_3 = 1.203e^{-5}$, $p=0.007$). This likely reflects that games surviving the market and continuing to gain reviews over time tend to possess higher intrinsic quality.
+4.  **Genre Advantage:** **`g_Racing`** exhibits the strongest positive genre effect ($\beta = 0.0866$, $p=0.000$). This means Racing games have a Review Ratio approximately 8.66 percentage points higher than the base category (Action), after controlling for price, reviews, and age. 
 
 ### 5.3 Figures & Interpretation
 
