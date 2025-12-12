@@ -204,11 +204,11 @@ The bar chart visually represents the estimated marginal impact (coefficients) o
 
 ### 6.1 Data Limitations
 
-Small Sample Size: The initial population sample size was only around 500 observations, reduced to approximately 450 after cleaning and outlier removal, which limits the generalizability of our inferences.
+**Small Sample Size**: The initial population sample size was only around 500 observations, reduced to approximately 450 after cleaning and outlier removal, which limits the generalizability of our inferences.
 
-Price Data Inaccuracy: The current_price variable (and original launch price) fails to accurately reflect the true purchase price. The most ideal data point would be the transaction price at the time of purchase for each review, which is unavailable to us.
+**Price Data Inaccuracy**: The current_price variable (and original launch price) fails to accurately reflect the true purchase price. The most ideal data point would be the transaction price at the time of purchase for each review, which is unavailable to us.
 
-The biggest element in order to measure the quality of game is unavaliable(e.g., gameplay depth, graphics quality, or sentiment derived from review text), which force us to only focus on other factors.
+The biggest element in order to measure the quality of game is **unavaliable**(e.g., gameplay depth, graphics quality, or sentiment derived from review text), which force us to only focus on other factors.
 
 ### 6.2 Modeling Limitations
 
