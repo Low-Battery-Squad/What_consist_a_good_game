@@ -204,14 +204,14 @@ The bar chart visually represents the estimated marginal impact (coefficients) o
 
 ### 6.1 Data Limitations
 
-TODO:
-- SteamSpy owners are approximate and noisy.  
-- Single snapshot in time (no panel structure).  
-- Missing unobservable quality measures (e.g. gameplay depth, graphics, review text sentiment).
+Small Sample Size: The initial population sample size was only around 500 observations, reduced to approximately 450 after cleaning and outlier removal, which limits the generalizability of our inferences.
+
+Price Data Inaccuracy: The current_price variable (and original launch price) fails to accurately reflect the true purchase price. The most ideal data point would be the transaction price at the time of purchase for each review, which is unavailable to us.
+
+The biggest element in order to measure the quality of game is unavaliable(e.g., gameplay depth, graphics quality, or sentiment derived from review text), which force us to only focus on other factors.
 
 ### 6.2 Modeling Limitations
 
-TODO:
-- Linear OLS may miss nonlinearities and interactions.  
-- Potential endogeneity: better games might both sell more and receive better reviews.  
-- Genre and price may proxy for many unobserved factors (marketing budget, production values).
+Linearity Assumption: The Linear OLS model assumes strictly linear relationships, potentially missing important nonlinearities or complex interaction effects between variables.
+
+Endogeneity Risk: Potential endogeneity exists, as better games likely cause both higher review counts and better review ratios, leading to a biased coefficient for total_reviews.
