@@ -86,15 +86,15 @@ From the **project root**, run:
 ```bash
 python main.py  
 ```
-1. This master script sequentially runs:
+This master script sequentially runs:
 
-2. Data_collection/main.py – data collection (interactive config)
+1. Data_collection/main.py – data collection (interactive config)
 
-3. Data_cleaning/main.py – cleaning & feature engineering
+2. Data_cleaning/main.py – cleaning & feature engineering
 
-4. Data_load/load_to_db.py – load cleaned data into PostgreSQL
+3. Data_load/load_to_db.py – load cleaned data into PostgreSQL
 
-5. Data_analysis/visualization.py – regression and figures
+4. Data_analysis/visualization.py – regression and figures
 
 If any step fails, the script stops and prints an error.
 
