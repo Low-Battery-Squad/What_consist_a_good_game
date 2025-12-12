@@ -175,6 +175,11 @@ Baseline model:
 * **Weighting:** Ordinary Least Squares (OLS) was used; no Weighted Least Squares (WLS) was applied.
 * **Robust Standard Errors (Robust SE):** The model was fitted using **HC3 Robust Standard Errors** (Heteroscedasticity Consistent 3) to correct for the presence of heteroscedasticity in the data.
 
+The initial model doesn't work well, as the R^2 is too low and condition number is large, indicating that there arestrong multicollinearity or other numerical problems.
+So, we make some slight adjustment to our regression model:
+
+`Review Ratio = Beta_0 + Beta_1 * (current_price) + Beta_2 * (total_reviews) + Beta_3 * (days_since_release) + Sum(Gamma_k * Genre_k) + Epsilon`
+
 ### 5.2 Key Quantitative Results
 
 1.  **Popularity Halo Effect:** **`total_reviews`** is the strongest positive predictor ($\beta_2 = 1.677e^{-7}$, $p=0.001$). This indicates that a higher volume of reviews strongly correlates with a higher positive review ratio, suggesting a significant "popularity halo effect."
