@@ -8,6 +8,13 @@ This repo implements a full data pipeline to study how different game features
 
 ### 1.1 Motivation
 
+In practice, players often talk about “game quality” as the main reason why they like or dislike a title, but quality itself is a very abstract concept.   
+In this project we ask whether, beyond this vague idea of quality, there are systematic and measurable factors that are associated with how well a game is received on Steam.
+
+For example, players are often said to be more forgiving and supportive toward indie games than toward big-budget titles – is this actually true in the data?   
+Sports games on Steam tend to have relatively poor user ratings, while racing games rarely receive very low scores – does this reflect real, statistically significant differences in how strict players are across genres?   
+By building a structured dataset and an econometric model, we try to quantify how much features such as price, popularity, age, free-to-play status, and genre correlate with user review outcomes, holding other factors constant.
+
 ### 1.2 Approach
 
 1. Use Steam and SteamSpy APIs to sample a configurable set of games.
